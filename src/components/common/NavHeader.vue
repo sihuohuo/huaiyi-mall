@@ -23,7 +23,7 @@
                     <a href="/#/index"></a>
                 </div>
                 <div class="header-menu">
-                    <div class="menu-item" v-for="(item,index) in headerProductList" :key="index">
+                    <!-- <div class="menu-item" v-for="(item,index) in headerProductList" :key="index">
                         <span>{{item.productName}}</span>
                         <div class="children">
                             <ul>
@@ -38,14 +38,6 @@
                                 </li>
                             </ul>
                         </div>
-                    </div>
-                    <!-- <div class="menu-item">
-                        <span>Redmi红米</span>
-                        <div class="children"></div>
-                    </div>
-                    <div class="menu-item">
-                        <span>电视</span>
-                        <div class="children"></div>
                     </div> -->
                 </div>
                 <div class="header-search">
@@ -135,7 +127,7 @@ export default {
           })
       },
       goToLogin(){
-          this.$router.push('/cart')
+          this.$router.push('/login')
       },
       goToCart(){
           this.$router.push('/cart')
@@ -252,6 +244,7 @@ export default {
                             top:100px;
                             left:0px;
                             width: 1226px;
+                            background-color: #fdfdfd;
                             border-top:1px solid #e0e0e0;
                             box-shadow: 1px 1px 10px 0px #b0b0b0;
                             z-index: 10;
