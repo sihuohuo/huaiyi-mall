@@ -23,7 +23,7 @@
                     <a href="/#/index"></a>
                 </div>
                 <div class="header-menu">
-                    <!-- <div class="menu-item" v-for="(item,index) in headerProductList" :key="index">
+                    <div class="menu-item" v-for="(item,index) in headerProductList" :key="index">
                         <span>{{item.productName}}</span>
                         <div class="children">
                             <ul>
@@ -38,7 +38,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
                 <div class="header-search">
                     <div class="search">
@@ -226,17 +226,28 @@ export default {
                         margin-right: 50px;
                         z-index: 9;
                         span{
+                            display: inline-block;
+                            height: 100px;
+                            line-height: 100px;
                             cursor: pointer;
                         }  
                         &:hover{
                             color: $colorA;
                             .children{
+                                display: block;
                                 height: 220px;
                                 opacity: 1;
                             }
                         }
+                        &::before{
+                            .children{
+                                // display: none;
+                                height: 0;
+                                opacity: 0;
+                            }
+                        }
                         .children{
-                            display: block;
+                            display: none;
                             width: 1226px;
                             height: 0;
                             opacity: 0;
