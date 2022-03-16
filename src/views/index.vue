@@ -40,7 +40,7 @@ export default {
                 height: 400px;
                 padding-top: 25px;
                 padding-bottom: 25px;
-                background-color: antiquewhite;
+                background: rgba(105,101,101,.6);
                 .menu-left{
                     ul{
                         width: 150px;
