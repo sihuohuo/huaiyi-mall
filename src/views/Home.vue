@@ -3,7 +3,7 @@
     <nav-header></nav-header>
     <router-view></router-view>
     <nav-footer></nav-footer>
-    <el-button type="primary" @click="testRequest">测试axios请求</el-button>
+    <!-- <el-button type="primary" @click="testRequest">测试axios请求</el-button> -->
   </div>
 </template>
 
