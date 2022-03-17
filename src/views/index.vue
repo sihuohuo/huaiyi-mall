@@ -4,39 +4,39 @@
             <div class="container">
                 <div class="left">
                     <div class="menu-left">
-                        <ul>
-                            <li><a href="javascript:;">手机
+                        <ul class="menu-left-ul">
+                            <li class="menu-left-li"><a href="javascript:;">手机
                                     <div class="menu-right">
-                                        <ul>
-                                            
+                                        <ul class="menu-right-ul">
+                                            <li class="menu-right-li">sss</li>
                                         </ul>
                                     </div>
                                 </a></li>
-                            <li><a href="javascript:;">电视
+                            <li class="menu-left-li"><a href="javascript:;">电视
                                     <div class="menu-right"></div>
                                 </a></li>
-                            <li><a href="javascript:;">笔记本 平板
+                            <li class="menu-left-li"><a href="javascript:;">笔记本 平板
                                     <div class="menu-right"></div>
                                 </a></li>
-                            <li><a href="javascript:;">家电
+                            <li class="menu-left-li"><a href="javascript:;">家电
                                     <div class="menu-right"></div>
                                 </a></li>
-                            <li><a href="javascript:;">出行 穿戴
+                            <li class="menu-left-li"><a href="javascript:;">出行 穿戴
                                     <div class="menu-right"></div>
                                 </a></li>
-                            <li><a href="javascript:;">智能 路由器
+                            <li class="menu-left-li"><a href="javascript:;">智能 路由器
                                     <div class="menu-right"></div>
                                 </a></li>
-                            <li><a href="javascript:;">电源 配件
+                            <li class="menu-left-li"><a href="javascript:;">电源 配件
                                     <div class="menu-right"></div>
                                 </a></li>
-                            <li><a href="javascript:;">健康 儿童
+                            <li class="menu-left-li"><a href="javascript:;">健康 儿童
                                     <div class="menu-right"></div>
                                 </a></li>
-                            <li><a href="javascript:;">耳机 音箱
+                            <li class="menu-left-li"><a href="javascript:;">耳机 音箱
                                     <div class="menu-right"></div>
                                 </a></li>
-                            <li><a href="javascript:;" key="2">生活 箱包
+                            <li class="menu-left-li"><a href="javascript:;" key="2">生活 箱包
                                     <div class="menu-right"></div>
                                 </a></li>
                         </ul>
@@ -72,10 +72,10 @@ export default {
                 padding-bottom: 25px;
                 background: rgba(105,101,101,.6);
                 .menu-left{
-                    ul{
+                    .menu-left-ul{
                         width: 150px;
                         height: 400px;
-                        li{
+                        .menu-left-li{
                             display: block;
                             padding-left: 20px;
                             height: 40px;
@@ -106,6 +106,17 @@ export default {
                                 // border: 1px solid lawngreen;
                                 // box-shadow: 0 0 1px red ;
                                 background-color: rgb(13, 204, 204);
+                                .menu-right-ul{
+                                    width:269px;
+                                    height: inherit;
+                                    background-color: brown;
+                                    .menu-right-li{
+                                        height: 40px;
+                                        width:269px;
+                                        line-height: 40px;
+                                        background-color: rgb(13, 204, 204);
+                                    }
+                                }
                             }
                         }
                     }
