@@ -10,6 +10,14 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false;
 Vue.prototype.$global = global
 
+// 注册全局组件
+let req = require.context('@/components/global',true,/\.vue$/)
+req.keys().forEach((path)=>{
+  const content = req(path).default || req(path)
+  console.log('content', content.name)
+  Vue.component(content.name,content)
+  
+})
 
 
 new Vue({
