@@ -8,7 +8,42 @@
                             <li class="menu-left-li"><a href="javascript:;">手机
                                     <div class="menu-right">
                                         <ul class="menu-right-ul">
-                                            <li class="menu-right-li">sss</li>
+                                            <li class="menu-right-li">
+                                                <a href="">
+                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
+                                                    <p>红米</p>
+                                                </a>
+                                            </li>
+                                            <li class="menu-right-li">
+                                                <a href="">
+                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
+                                                    <p>红米</p>
+                                                </a>
+                                            </li>
+                                            <li class="menu-right-li">
+                                                <a href="">
+                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
+                                                    <p>红米</p>
+                                                </a>
+                                            </li>
+                                            <li class="menu-right-li">
+                                                <a href="">
+                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
+                                                    <p>红米</p>
+                                                </a>
+                                            </li>
+                                            <li class="menu-right-li">
+                                                <a href="">
+                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
+                                                    <p>红米</p>
+                                                </a>
+                                            </li>
+                                            <li class="menu-right-li">
+                                                <a href="">
+                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
+                                                    <p>红米</p>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </div>
                                 </a></li>
@@ -108,13 +143,38 @@ export default {
                                 background-color: rgb(13, 204, 204);
                                 .menu-right-ul{
                                     width:269px;
-                                    height: inherit;
-                                    background-color: brown;
+                                    height: 450px;
+                                    // background-color: rgb(235, 52, 52);
                                     .menu-right-li{
-                                        height: 40px;
-                                        width:269px;
-                                        line-height: 40px;
-                                        background-color: rgb(13, 204, 204);
+                                        float: float;
+                                        height: 35px;
+                                        width:233px;
+                                        padding: 20px 18px;
+                                        font-size: 14px;
+                                        // background-color: rgba(222, 231, 231,0.5);
+                                        a{
+                                            // display: inline-block;
+                                            float: left;
+                                            width: 233px;
+                                            height: 35px;
+                                            background-color: antiquewhite;
+                                            line-height: 35px;
+                                            img{
+                                                // display: block;
+                                                float: left;
+                                                width: 30px;
+                                                height: 35px;
+                                                margin-left:10px;
+                                                margin-right:10px;
+                                            }
+                                            p{
+                                                float: left;
+                                                width: 172px;
+                                                height: 35px;
+                                                // background-color: red;
+                                                line-height: 35px;
+                                            }
+                                        }
                                     }
                                 }
                             }
