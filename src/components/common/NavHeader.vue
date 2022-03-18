@@ -65,7 +65,6 @@ export default {
             searchContent:'',
             searchContentList: [],
             headerProductList:[],
-            carouselLeftList:[],
         }
     },
     computed:{
@@ -77,10 +76,9 @@ export default {
             return `￥${val}`
         }
     },
-    async mounted(){
+        mounted(){
         this.searchContentList = this.loadAll()
-        await this.getHeaderProdcut()
-
+        this.getHeaderProdcut()
     },
     methods:{
         searchClick(){
@@ -126,11 +124,6 @@ export default {
                   }
                   return item
               })
-          })
-      },
-      getCarousel(){
-          this.$global.axios.get('/carousel/left').then((res)=>{
-
           })
       },
       goToLogin(){

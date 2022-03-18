@@ -4,11 +4,18 @@
             <div class="container">
                 <div class="left">
                     <div class="menu-left">
-                        <ul class="menu-left-ul">
-                            <li class="menu-left-li"><a href="javascript:;">手机
+                        <ul class="menu-left-ul" v-for="(item,index) in carouselLeftList" :key="index">
+                            <li class="menu-left-li">
+                                <a href="javascript:;">{{item.menuName}}
                                     <div class="menu-right">
                                         <ul class="menu-right-ul">
-                                            <li class="menu-right-li">
+                                            <li class="menu-right-li"  v-for="(menuItems,index2) in item.menuItems" :key="index2">
+                                                <a href="">
+                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
+                                                    <p>{{menuItems.productName}}</p>
+                                                </a>
+                                            </li>
+                                            <!-- <li class="menu-right-li">
                                                 <a href="">
                                                     <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
                                                     <p>红米</p>
@@ -37,17 +44,11 @@
                                                     <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
                                                     <p>红米</p>
                                                 </a>
-                                            </li>
-                                            <li class="menu-right-li">
-                                                <a href="">
-                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
-                                                    <p>红米</p>
-                                                </a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                 </a></li>
-                            <li class="menu-left-li"><a href="javascript:;">电视
+                            <!-- <li class="menu-left-li"><a href="javascript:;">电视
                                     <div class="menu-right"></div>
                                 </a></li>
                             <li class="menu-left-li"><a href="javascript:;">笔记本 平板
@@ -73,7 +74,7 @@
                                 </a></li>
                             <li class="menu-left-li"><a href="javascript:;" key="2">生活 箱包
                                     <div class="menu-right"></div>
-                                </a></li>
+                                </a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -87,6 +88,25 @@
 <script>
 export default {
     name:"index", // 首页
+    data(){
+        return {
+            carouselLeftList:[],
+        }
+    },
+    mounted(){
+        this.getCarousel()
+    },
+    methods:{
+        getCarousel(){
+          this.$global.axios.get('/carousel/left').then((res)=>{
+              this.carouselLeftList = res.list
+              if(this.carouselLeftList.length > 10){
+                  this.carouselLeftList.splice(0,10)
+              }
+              console.log('====carouselLeftList',this.carouselLeftList)
+          })
+      },
+    }
 }
 </script>
 <style lang="scss" scoped>
