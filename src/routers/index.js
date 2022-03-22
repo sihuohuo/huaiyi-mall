@@ -9,6 +9,10 @@ const routes = [];
 
 Reflect.apply([].push,routes,Home)
 Reflect.apply([].push,routes,Cart)
+// routes.push(Home)
+// routes.push(Home)
+console.log('Home',Home)
+console.log('routes',routes)
 
 export default new Router({
   mode: "hash",

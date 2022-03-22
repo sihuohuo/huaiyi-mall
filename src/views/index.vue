@@ -4,47 +4,17 @@
             <div class="container">
                 <div class="left">
                     <div class="menu-left">
-                        <ul class="menu-left-ul" v-for="(item,index) in carouselLeftList" :key="index">
-                            <li class="menu-left-li">
+                        <ul class="menu-left-ul">
+                            <li class="menu-left-li"  v-for="(item,index) in carouselLeftList" :key="index">
                                 <a href="javascript:;">{{item.menuName}}
                                     <div class="menu-right">
-                                        <ul class="menu-right-ul">
-                                            <li class="menu-right-li"  v-for="(menuItems,index2) in item.menuItems" :key="index2">
+                                        <ul class="menu-right-ul" v-for="(item2,index2) in item.menuItems" :key="index2">
+                                            <li class="menu-right-li"  v-for="(item3,index3) in item2" :key="index3">
                                                 <a href="">
-                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
-                                                    <p>{{menuItems.productName}}</p>
+                                                    <img :src="item3.productImg" alt="">
+                                                    <p>{{item3.productName}}</p>
                                                 </a>
                                             </li>
-                                            <!-- <li class="menu-right-li">
-                                                <a href="">
-                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
-                                                    <p>红米</p>
-                                                </a>
-                                            </li>
-                                            <li class="menu-right-li">
-                                                <a href="">
-                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
-                                                    <p>红米</p>
-                                                </a>
-                                            </li>
-                                            <li class="menu-right-li">
-                                                <a href="">
-                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
-                                                    <p>红米</p>
-                                                </a>
-                                            </li>
-                                            <li class="menu-right-li">
-                                                <a href="">
-                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
-                                                    <p>红米</p>
-                                                </a>
-                                            </li>
-                                            <li class="menu-right-li">
-                                                <a href="">
-                                                    <img src="../../public/img/icons/apple-touch-icon-76x76.png" alt="">
-                                                    <p>红米</p>
-                                                </a>
-                                            </li> -->
                                         </ul>
                                     </div>
                                 </a></li>
@@ -79,7 +49,15 @@
                     </div>
                 </div>
             <div class="right">
-
+                <el-carousel height="150px">
+                    <el-carousel-item v-for="(item,index) in carouselRightList" :key="index">
+                        <div class="carousel">
+                            <a href="">
+                                <img :src="item.imgUrl" alt="">
+                            </a>
+                        </div>
+                    </el-carousel-item>
+                </el-carousel>
             </div>
             </div>
         </div>
@@ -91,21 +69,45 @@ export default {
     data(){
         return {
             carouselLeftList:[],
+            carouselRightList:[],
         }
     },
     mounted(){
-        this.getCarousel()
+        this.getCarouselLeft()
+        this.getCarouselRight()
     },
     methods:{
-        getCarousel(){
+        getCarouselLeft(){
           this.$global.axios.get('/carousel/left').then((res)=>{
-              this.carouselLeftList = res.list
-              if(this.carouselLeftList.length > 10){
-                  this.carouselLeftList.splice(0,10)
+              if(res.status === 0) {
+                this.carouselLeftList = res.data.list
+                if(this.carouselLeftList.length > 10){
+                    this.carouselLeftList.splice(10,this.carouselLeftList.length)
+                }
+                this.carouselLeftList.forEach((item)=>{
+                    let arr = []
+                    for(let i=0;i<4;i++){
+                        if(item.menuItems.length>0){
+                            arr.push(item.menuItems.splice(0,6))
+                        }
+                    }
+                    item.menuItems = arr
+                    // this.$forceUpdate();    
+                })
+                    //   console.log('====carouselLeftList',this.carouselLeftList)
               }
-              console.log('====carouselLeftList',this.carouselLeftList)
+              
           })
       },
+      getCarouselRight(){
+          this.$global.axios.get('/carousel/right').then((res)=>{
+              console.log('---res',res)
+              if(res.status === 0){
+                  this.carouselRightList = res.data.list
+                  console.log('carouselRightList',this.carouselRightList)
+              }
+          })
+      }
     }
 }
 </script>
@@ -117,7 +119,6 @@ export default {
             // background-color: aquamarine;
             position: relative;
             .left{
-                display: inline-block;
                 position: absolute;
                 top:0px;
                 left: 0px;
@@ -158,13 +159,15 @@ export default {
                                 position: absolute;
                                 top: 0;
                                 left: 150px;
+                                z-index:2;
                                 // border: 1px solid lawngreen;
                                 // box-shadow: 0 0 1px red ;
-                                background-color: rgb(13, 204, 204);
+                                background-color: #fff;
                                 .menu-right-ul{
                                     width:269px;
                                     height: 450px;
                                     // background-color: rgb(235, 52, 52);
+                                    display: inline-block;
                                     .menu-right-li{
                                         float: float;
                                         height: 35px;
@@ -177,7 +180,8 @@ export default {
                                             float: left;
                                             width: 233px;
                                             height: 35px;
-                                            background-color: antiquewhite;
+                                            color: #333;
+                                            // background-color: antiquewhite;
                                             line-height: 35px;
                                             img{
                                                 // display: block;
@@ -204,11 +208,42 @@ export default {
                 
             }
             .right{
-                display: inline-block;
-               
+                // display: inline-block;
+                position: absolute;
+                top: 0;
+                left: 150px;
                 width:1076px;
                 height: 450px;
-                // background-color: darkcyan;
+                
+                z-index: 1;
+                /deep/ .el-carousel{
+                    width:inherit;
+                    height: inherit;
+                    // background-color: darkcyan;
+                }
+                /deep/ .el-carousel__container{
+                    width:inherit;
+                    height: inherit !important;
+                    background-color: darkcyan;
+                }
+                /deep/ .el-carousel__button{
+                    background-color:#333 !important;
+                }
+                .carousel{
+                    height: inherit;
+                    width: inherit;
+                    a{
+                        display: inline-block;
+                        height: inherit;
+                        width: inherit;
+                        img{
+                            display: inline-block;
+                            height: inherit;
+                            width: inherit;
+                            // background-color: rgb(182, 206, 98);
+                        }
+                    }
+                }
             }
         }
     }

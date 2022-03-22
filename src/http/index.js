@@ -31,12 +31,13 @@ $axios.interceptors.response.use(function(response){
     let res = response.data
     let path = location.hash // 获取当前地址
     if(res.status === 0 || res.status === 200){ // 假设 接口status返回0和200表示请求成功
-        return res.data
+        return res
     }else if(res.status === 10086){ // 假设接口status返回10086表示未登录
         if(path != '#/index'){
             window.location.href = '/#/login'
         }
     }else{
+        return res
         console.log(res.message || 'response error') // 假设接口返回的错误/成功信息存在message中
     }
 })

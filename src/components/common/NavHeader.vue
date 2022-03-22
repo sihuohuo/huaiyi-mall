@@ -111,19 +111,21 @@ export default {
       },
       getHeaderProdcut(){
           this.$global.axios.get('/headerProduct/productList').then((res)=>{
-              console.log('res',res)
-              if(res.list.length>3){
-                  this.headerProductList = res.list.slice(0,3)
-              }else{
-                  this.headerProductList = res.list
+              if(res.status === 0){
+                if(res.data.list.length>3){
+                  this.headerProductList = res.data.list.slice(0,3)
+                }else{
+                    this.headerProductList = res.list
+                }
+                
+                this.headerProductList = this.headerProductList.map(item=>{
+                    if(item.productList.length>6){
+                        item.productList = item.productList.slice(0,6)
+                    }
+                    return item
+                })
               }
               
-              this.headerProductList = this.headerProductList.map(item=>{
-                  if(item.productList.length>6){
-                      item.productList = item.productList.slice(0,6)
-                  }
-                  return item
-              })
           })
       },
       goToLogin(){
