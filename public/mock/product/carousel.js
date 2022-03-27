@@ -376,3 +376,26 @@ Mock.mock('/api/carousel/right',{
         ]
     }
 })
+Mock.mock('/api/adsProduct',{
+    "status": 0,
+    "message":"操作成功",
+    "data":{
+        adsProduct:[
+            {
+                id:"03001",
+                name:"广告商品1",
+                imgurl:'../../img/carousel/advProduct01.jpg'
+            },
+            {
+                id:"03002",
+                name:"广告商品2",
+                imgurl:'../../img/carousel/advProduct02.jpg'
+            },
+            {
+                id:"03003",
+                name:"广告商品3",
+                imgurl:'../../img/carousel/advProduct03.jpg'
+            },
+        ]
+    }
+})

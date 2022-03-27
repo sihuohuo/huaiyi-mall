@@ -48,17 +48,87 @@
                         </ul>
                     </div>
                 </div>
-            <div class="right">
-                <el-carousel height="150px">
-                    <el-carousel-item v-for="(item,index) in carouselRightList" :key="index">
-                        <div class="carousel">
-                            <a href="">
-                                <img :src="item.imgUrl" alt="">
-                            </a>
-                        </div>
-                    </el-carousel-item>
-                </el-carousel>
-            </div>
+                <div class="right">
+                    <el-carousel height="150px">
+                        <el-carousel-item v-for="(item,index) in carouselRightList" :key="index">
+                            <div class="carousel">
+                                <a href="">
+                                    <img :src="item.imgUrl" alt="">
+                                </a>
+                            </div>
+                        </el-carousel-item>
+                    </el-carousel>
+                </div>
+                <div class="adv-product">
+                    <el-row>
+                        <el-col :span="4" class="adv-table">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="保障服务">
+                                        保障服务
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="企业团购">
+                                        企业团购
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="F码通道">
+                                        F码通道
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="米粉卡">
+                                        米粉卡
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="以旧换新">
+                                        以旧换新
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="话费充值">
+                                        话费充值
+                                    </a>
+                                </li>
+                                <!-- <li>企业团购</li>
+                                <li>F码通道</li>
+                                <li>米粉卡</li>
+                                <li>以旧换新</li>
+                                <li>话费充值</li> -->
+                            </ul>
+                        </el-col>
+                        <el-col :span="20" class="adv-product-list">
+                            <div class="home-pro-list">
+                                <ul>
+                                    <li>
+                                        <a href="">
+                                            <img src="../../public/img/advProduct/advProduct01.jpg" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <img src="../../public/img/advProduct/advProduct02.jpg" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <img src="../../public/img/advProduct/advProduct03.jpg" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
             </div>
         </div>
     </div>
@@ -70,11 +140,13 @@ export default {
         return {
             carouselLeftList:[],
             carouselRightList:[],
+            adsProductList:[],
         }
     },
     mounted(){
         this.getCarouselLeft()
         this.getCarouselRight()
+        this.getAdsProduct()
     },
     methods:{
         getCarouselLeft(){
@@ -101,13 +173,21 @@ export default {
       },
       getCarouselRight(){
           this.$global.axios.get('/carousel/right').then((res)=>{
-              console.log('---res',res)
+            //   console.log('---res',res)
               if(res.status === 0){
                   this.carouselRightList = res.data.list
-                  console.log('carouselRightList',this.carouselRightList)
+                //   console.log('carouselRightList',this.carouselRightList)
               }
           })
-      }
+      },
+      getAdsProduct(){
+          this.$global.axios.get('/adsProduct').then((res)=>{
+              if(res.status === 0){
+                  console.log('======adsProduct',res.data.adsProduct)
+                  this.adsProductList = res.data.adsProduct
+              }
+          })
+      },
     }
 }
 </script>
@@ -115,7 +195,8 @@ export default {
 @import '@/assets/scss/base.scss';
     .carousel{
         .container{
-            height: 450px;
+            height: 680px;
+            margin-bottom: 20px;
             // background-color: aquamarine;
             position: relative;
             .left{
@@ -243,6 +324,90 @@ export default {
                             // background-color: rgb(182, 206, 98);
                         }
                     }
+                }
+            }
+            .adv-product{
+                position: absolute;
+                top: 450px;
+                left: 0px;
+                margin-top: 10px;
+                width: 1226px;
+                height: 160px;
+                // background-color: #FF6700;
+                .adv-table{
+                    // background-color: #5eaa20;
+                    background-color: #5f5750;
+                    height: 160px;
+                    ul{
+                        float: left;
+                        width: 90%;
+                        height: 90%;
+                        margin-top:1px;
+                        li{
+                            // background-color: #205caa;
+                            height: 70px;
+                            width: 33%;
+                            float: left;
+                            position: relative;
+                            line-height: 50px;
+                            a{
+                                
+                                display: block;
+                                width: 100%;
+                                height: 100%;
+                                padding-top: 10px;
+                                // background-color: #7720aa;
+                                line-height: 28px;
+                                text-align: center;
+                                color: #fff;
+                                opacity: 0.7;
+                                img{
+                                    display: block;
+                                    width: 30px;
+                                    height: 30px;
+                                    margin: 0 auto; 
+                                }
+                                
+                            }
+                            &::before{
+                                position: absolute;
+                                top: 10px;
+                                right: 0px;
+                                height: 55px;
+                                width: 1px;
+                                content:' ';
+                                background: #665e57;
+                            }
+                            &::after{
+                                position: absolute;
+                                top: -1px;
+                                left: 6px;
+                                height: 1px;
+                                width: 45px;
+                                content:' ';
+                                background: #665e57;
+                            }
+                        }
+                    }
+                }
+                .adv-product-list{
+                    .home-pro-list{
+                        ul{
+                            float: left;
+                            width: 100%;
+                            margin-left: 40px;
+                            li{
+                                float: left;
+                                width: 32%;
+                                margin-left: 10px;
+                                img{
+                                    display: inline-block;
+                                    width: 91%;
+                                }
+                            }
+                        }
+                    }
+                    
                 }
             }
         }
