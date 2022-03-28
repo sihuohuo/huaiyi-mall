@@ -153,11 +153,14 @@ export default {
                     display: inline-block;
                     color: #b0b0b0;
                     margin-right: 15px;
+                    &:hover{
+                        color: #fdfdfd;
+                    }
                 }
                 .topbar-user{
                     .my-cart{
                         width: 100px;
-                        background-color: aliceblue;
+                        background-color: rgba(201, 204, 207, 0.5);
                         text-align: center;
                     }
                     .icon-cart{

@@ -529,8 +529,8 @@ export default {
                         &:hover{
                             position: relative;
                             top: -3px;
-                            box-shadow: 1px 1px 10px 5px rgb(207, 206, 206);
-                            transition: box-shadow .3s;
+                            box-shadow: 1px 5px 10px 5px rgb(207, 206, 206);
+                                    transition: all .3s;
                         }
                         
                     }
@@ -554,8 +554,8 @@ export default {
                                 &:hover{
                                     position: relative;
                                     top: -3px;
-                                    box-shadow: 1px 1px 10px 5px rgb(207, 206, 206);
-                                    transition: box-shadow .3s;
+                                    box-shadow: 1px 5px 10px 5px rgb(207, 206, 206);
+                                    transition: all .3s;
                                 }
                                 a{
                                     img{
