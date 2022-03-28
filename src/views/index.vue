@@ -131,6 +131,73 @@
                 </div>
             </div>
         </div>
+        <div class="home-pro">
+            <div class="container">
+                <div class="home-pro-title">
+                    <h2>手机</h2>
+                    <div class="home-pro-title-more">
+                        <a href="">
+                            查看更多
+                            <i class="el-icon-caret-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="home-pro-content">
+                    <el-row>
+                        <el-col span="5" class="left">
+                            <a href="">
+                                <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                            </a>
+                        </el-col>
+                        <el-col span="19" class="right">
+                            <ul class="brick-list">
+                                <li class="brick-list-item">
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                    </a>
+                                </li>
+                                <li class="brick-list-item">
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                    </a>
+                                </li>
+                                <li class="brick-list-item">
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                    </a>
+                                </li>
+                                <li class="brick-list-item">
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                    </a>
+                                </li>
+                                <li class="brick-list-item">
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                    </a>
+                                </li>
+                                <li class="brick-list-item">
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                    </a>
+                                </li>
+                                <li class="brick-list-item">
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                    </a>
+                                </li>
+                                <li class="brick-list-item">
+                                    <a href="">
+                                        <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                        </el-col>
+                    </el-row>
+                </div>
+            </div>
+            
+        </div>
     </div>
 </template>
 <script>
@@ -195,8 +262,8 @@ export default {
 @import '@/assets/scss/base.scss';
     .carousel{
         .container{
-            height: 680px;
-            margin-bottom: 20px;
+            height: 660px;
+            // margin-bottom: 20px;
             // background-color: aquamarine;
             position: relative;
             .left{
@@ -361,6 +428,9 @@ export default {
                                 text-align: center;
                                 color: #fff;
                                 opacity: 0.7;
+                                &:hover{
+                                    opacity: 1;
+                                }
                                 img{
                                     display: block;
                                     width: 30px;
@@ -411,5 +481,93 @@ export default {
                 }
             }
         }
+    }
+    .home-pro{
+        background-color: #f5f5f5;
+        padding-top: 4px;
+        padding-bottom: 12px;
+       .container{
+            .home-pro-title{
+                display: flex;
+                height: 58px;
+                line-height: 58px;
+                justify-content: space-between;
+                h2{
+                    font-weight: 200;
+                }
+                .home-pro-title-more{
+                    a{
+                        font-size: 16px;
+                        color: #424242;
+                        &:hover{
+                            color: #FF6700;
+                        }
+                    }
+                }
+            }
+            .home-pro-content{
+                height: 600px;
+                // background-color: #FF6700;
+                /deep/ .el-row{
+                    height: 100%;
+                    .left{
+                        height: 100%;
+                        // background-color: #ecb48e;
+                        background-color: rgba(0,0,0,0);
+                        border: 1px solid #FF6700;
+                        a{
+                            display: block;
+                            height: 100%;
+                            line-height: 600px;
+                            
+                            img{
+                               display: inline-block; 
+                               width:100%;
+                            }
+                            
+                        }
+                        &:hover{
+                            position: relative;
+                            top: -3px;
+                            box-shadow: 1px 1px 10px 5px rgb(207, 206, 206);
+                            transition: box-shadow .3s;
+                        }
+                        
+                    }
+                    .right{
+                        height: 100%;
+                        // background-color: #0d5a5a;
+                        background-color: rgba(0,0,0,0);
+                        .brick-list{
+                            // display: flex;
+                            // justify-content: space-between;
+                            // flex-wrap: wrap;
+                            background-color: #0d5a5a;
+                            .brick-list-item{
+                                float: left;
+                                width: 210px;
+                                height: 250px;
+                                margin-left: 30.5px;
+                                margin-bottom: 15px;
+                                padding: 20px 0;
+                                border: 1px solid #62a8eb;
+                                &:hover{
+                                    position: relative;
+                                    top: -3px;
+                                    box-shadow: 1px 1px 10px 5px rgb(207, 206, 206);
+                                    transition: box-shadow .3s;
+                                }
+                                a{
+                                    img{
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                
+            }
+       } 
     }
 </style>
