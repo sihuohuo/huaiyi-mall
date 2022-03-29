@@ -154,41 +154,65 @@
                                 <li class="brick-list-item">
                                     <a href="">
                                         <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                        <h3>Redmi 10A</h3>
+                                        <p>大电量、大音量、大屏幕</p>
+                                        <p class="price">{{`649元起`}}</p>
                                     </a>
                                 </li>
                                 <li class="brick-list-item">
                                     <a href="">
                                         <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                        <h3>Redmi K50 Pro</h3>
+                                        <p>2K直屏的狠旗舰</p>
+                                        <p class="price">{{`2999元起`}}</p>
                                     </a>
                                 </li>
                                 <li class="brick-list-item">
                                     <a href="">
                                         <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                        <h3>Redmi K50</h3>
+                                        <p>2K直屏的狠旗舰</p>
+                                        <p class="price">{{`2399元起`}}</p>
                                     </a>
                                 </li>
                                 <li class="brick-list-item">
                                     <a href="">
                                         <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                        <h3>Redmi K40S</h3>
+                                        <p>口碑真旗舰</p>
+                                        <p class="price">{{`1799元起`}}</p>
                                     </a>
                                 </li>
                                 <li class="brick-list-item">
                                     <a href="">
                                         <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                        <h3>Redmi 10A</h3>
+                                        <p>大电量、大音量、大屏幕</p>
+                                        <p class="price">{{`649元起`}}</p>
                                     </a>
                                 </li>
                                 <li class="brick-list-item">
                                     <a href="">
                                         <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                        <h3>Redmi K50 电竞版</h3>
+                                        <p>全线拉满的冷血旗舰</p>
+                                        <p class="price">{{`3299元起`}}</p>
                                     </a>
                                 </li>
                                 <li class="brick-list-item">
                                     <a href="">
                                         <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                        <h3>Xiaomi 12 Pro</h3>
+                                        <p>全新骁龙8 | 2K AMOLED屏幕</p>
+                                        <p class="price">{{`4699元起`}}</p>
                                     </a>
                                 </li>
                                 <li class="brick-list-item">
                                     <a href="">
                                         <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
+                                        <h3>Xiaomi 12</h3>
+                                        <p>全新骁龙8 | 5000万主摄</p>
+                                        <p class="price">{{`2999元起`}}</p>
                                     </a>
                                 </li>
                             </ul>
@@ -323,6 +347,11 @@ export default {
                                         padding: 20px 18px;
                                         font-size: 14px;
                                         // background-color: rgba(222, 231, 231,0.5);
+                                        &:hover{
+                                            a{
+                                                color: #FF6700;
+                                            }
+                                        }
                                         a{
                                             // display: inline-block;
                                             float: left;
@@ -513,13 +542,14 @@ export default {
                     .left{
                         height: 100%;
                         // background-color: #ecb48e;
-                        background-color: rgba(0,0,0,0);
-                        border: 1px solid #FF6700;
+                        // background-color: rgba(0,0,0,0);
+                        background-color: #f5f5f5;
+                        // border: 1px solid #FF6700;
                         a{
                             display: block;
                             height: 100%;
                             line-height: 600px;
-                            
+                            background-color: #fff;
                             img{
                                display: inline-block; 
                                width:100%;
@@ -530,7 +560,7 @@ export default {
                             position: relative;
                             top: -3px;
                             box-shadow: 1px 5px 10px 5px rgb(207, 206, 206);
-                                    transition: all .3s;
+                            transition: all .3s;
                         }
                         
                     }
@@ -542,7 +572,7 @@ export default {
                             // display: flex;
                             // justify-content: space-between;
                             // flex-wrap: wrap;
-                            background-color: #0d5a5a;
+                            // background-color: #0d5a5a;
                             .brick-list-item{
                                 float: left;
                                 width: 210px;
@@ -550,7 +580,8 @@ export default {
                                 margin-left: 30.5px;
                                 margin-bottom: 15px;
                                 padding: 20px 0;
-                                border: 1px solid #62a8eb;
+                                background-color: #fff;
+                                // border: 1px solid #62a8eb;
                                 &:hover{
                                     position: relative;
                                     top: -3px;
@@ -558,8 +589,21 @@ export default {
                                     transition: all .3s;
                                 }
                                 a{
+                                    display: block;
+                                    color: #757575;
+                                    text-align: center;
                                     img{
-                                        width: 100%;
+                                        width: 90%;
+                                    }
+                                    h3{
+                                        display: block;
+                                        margin-bottom: 10px;
+                                        color: #757575;
+                                    }
+                                    .price{
+                                        display: block;
+                                        margin-top: 10px;
+                                        color: #ff6700
                                     }
                                 }
                             }
