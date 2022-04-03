@@ -1,6 +1,18 @@
 <template>
   <div id="app">
     <my-a></my-a>
+    <modal 
+      :showModal.sync="showModal"
+      modalType="small" 
+      title="默认标题"
+      btnType="3"
+      @submit="modalSubmit"
+      @cancel="modalCancel"
+      >
+        <template v-slot:body>
+          <p>商品添加成功!</p>
+        </template>
+      </modal>
     <router-view />
   </div>
 </template>
@@ -13,7 +25,7 @@
     },
     data(){
       return{
-
+        showModal:true,
       }
     },
     mounted(){  
@@ -29,7 +41,15 @@
       this.$global.sayHello()
     },
     methods:{
-
+      modalSubmit(vm){
+        this.showModal = false
+        console.log('modal confirm')
+        // console.log('vm',vm)
+      },
+      modalCancel(){
+        this.showModal = false
+        console.log('modal cancel')
+      }
     }
   }
 </script>
