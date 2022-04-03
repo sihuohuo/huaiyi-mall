@@ -57,18 +57,20 @@
     </div>
 </template>
 <script>
+import {mapState} from 'vuex'
 export default {
     name:'nav-header',
     data(){
         return {
-            userName:'',
             searchContent:'',
             searchContentList: [],
             headerProductList:[],
         }
     },
     computed:{
-
+        ...mapState([
+            'userName'
+        ])
     },
     filters:{
         priceFilter(val){

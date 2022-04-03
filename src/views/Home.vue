@@ -23,6 +23,18 @@ export default {
     return {
     }
   },
+  mounted(){
+    let p = new Promise((resolve,reject)=>{
+      setTimeout(()=>{
+        console.log("定时器模拟异步请求")
+        resolve("接口返回的数据")
+      },1000)
+    })
+    p.then(res=>{
+      console.log(res)
+    })
+    this.$store.dispatch('saveUserMsg')
+  },
   methods:{
     testRequest(){
       this.$global.axios.get('/user/login').then((res)=>{

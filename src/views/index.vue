@@ -144,12 +144,12 @@
                 </div>
                 <div class="home-pro-content">
                     <el-row>
-                        <el-col span="5" class="left">
+                        <el-col :span="5" class="left">
                             <a href="">
                                 <img src="../../public/img/icons/android-chrome-192x192.png" alt="">
                             </a>
                         </el-col>
-                        <el-col span="19" class="right">
+                        <el-col :span="19" class="right">
                             <ul class="brick-list">
                                 <li class="brick-list-item">
                                     <a href="">
