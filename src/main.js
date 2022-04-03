@@ -5,8 +5,13 @@ import store from "./store/index";
 import global from './global/index'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css' // 样式需要单独引用
+import VueLazyload from 'vue-lazyload'
 import "./registerServiceWorker";
 Vue.use(ElementUI)
+Vue.use(VueLazyload,{
+  error:"../public/img/icons/error.png",
+  loading:"../public/img/icons/loading.gif"
+})
 Vue.config.productionTip = false;
 Vue.prototype.$global = global
 
