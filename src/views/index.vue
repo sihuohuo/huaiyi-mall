@@ -52,7 +52,7 @@
                     <el-carousel height="150px">
                         <el-carousel-item v-for="(item,index) in carouselRightList" :key="index">
                             <div class="carousel">
-                                <a href="">
+                                <a :href="'/#/product/'+item.id">
                                     <img :src="item.imgUrl" alt="">
                                 </a>
                             </div>
@@ -267,7 +267,7 @@ export default {
             //   console.log('---res',res)
               if(res.status === 0){
                   this.carouselRightList = res.data.list
-                //   console.log('carouselRightList',this.carouselRightList)
+                  console.log('carouselRightList',this.carouselRightList)
               }
           })
       },
