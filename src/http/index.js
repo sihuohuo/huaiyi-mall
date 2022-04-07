@@ -35,9 +35,10 @@ $axios.interceptors.response.use(function(response){
     }else if(res.status === 10086){ // 假设接口status返回10086表示未登录
         if(path != '#/index'){
             window.location.href = '/#/login'
+            return Promise.reject(res)
         }
     }else{
-        return res
+        return Promise.reject(res)
         console.log(res.message || 'response error') // 假设接口返回的错误/成功信息存在message中
     }
 })

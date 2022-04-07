@@ -12,7 +12,7 @@
 // import HelloWorld from "@/components/HelloWorld.vue";
 import NavHeader from '@/components/common/NavHeader.vue'
 import NavFooter from '@/components/common/NavFooter.vue'
-
+import {mapActions} from 'vuex'
 export default {
   name: "home",
   components: {
@@ -33,9 +33,13 @@ export default {
     p.then(res=>{
       console.log(res)
     })
-    this.$store.dispatch('saveUserMsg')
+    // this.$store.dispatch('saveUserMsg')
+    this.saveUserMsg()
   },
   methods:{
+    ...mapActions({
+      'saveUserMsg':'saveUserMsg'
+    }),
     testRequest(){
       this.$global.axios.get('/user/login').then((res)=>{
         console.log(res)

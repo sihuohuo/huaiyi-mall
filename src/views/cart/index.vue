@@ -1,5 +1,7 @@
 <template>
-    <div>cart</div>
+    <div>cart
+        <el-button type="primary" size="small" @click="back">back</el-button>
+    </div>
 </template>
 
 <script>
@@ -15,7 +17,9 @@ export default {
         console.log('arr',arr)
     },
     methods:{
-
+        back(){
+            this.$router.back()
+        }
     }
 }
 </script>
