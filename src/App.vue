@@ -25,7 +25,7 @@
     },
     data(){
       return{
-        showModal:true,
+        showModal:false,
       }
     },
     mounted(){  

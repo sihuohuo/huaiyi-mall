@@ -3,7 +3,7 @@ module.exports = {
         contentBase: "./dist", // 生成虚拟目录的位置
         open:true, // 自动打开浏览器
         // autoOpenBrowser: true,
-        host:'localhost',
+        host:'0.0.0.0',
         port:8080,
         hot:true, // 开启热更新
         hotOnly:true, // 即使HMR不生效，也不去刷新整个页面

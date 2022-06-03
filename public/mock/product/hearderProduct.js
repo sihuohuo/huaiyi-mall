@@ -179,3 +179,12 @@ Mock.mock('/api/headerProduct/productList',{
     },
     "message":"操作成功"
 })
+Mock.mock('/api/getTableData', {
+    "status": 0,
+    "message": "操作成功",
+    "data": [
+        { id: "01", name: "张三", sex: "01" },
+        { id: "02", name: "李四", sex: "01" },
+        { id: "03", name: "雪莉", sex: "02" },
+    ]
+})
