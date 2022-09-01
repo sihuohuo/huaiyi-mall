@@ -30,6 +30,7 @@ $axios.interceptors.request.use(function(config){
 $axios.interceptors.response.use(function(response){
     let res = response.data
     let path = location.hash // 获取当前地址
+    return res
     if(res.status === 0 || res.status === 200){ // 假设 接口status返回0和200表示请求成功
         return res
     }else if(res.status === 10086){ // 假设接口status返回10086表示未登录

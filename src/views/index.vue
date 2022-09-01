@@ -52,7 +52,7 @@
                     <el-carousel height="150px">
                         <el-carousel-item v-for="(item,index) in carouselRightList" :key="index">
                             <div class="carousel">
-                                <a :href="'/#/product/'+item.id">
+                                <a @click="lunboClick(item.id)">
                                     <img :src="item.imgUrl" alt="">
                                 </a>
                             </div>
@@ -234,10 +234,24 @@ export default {
             adsProductList:[],
         }
     },
-    mounted(){
+    async mounted(){
         this.getCarouselLeft()
         this.getCarouselRight()
         this.getAdsProduct()
+        let p1 = new Promise((resolve, reject) => {
+            this.$global.axios.get('/headerProduct/productList').then((res) => {
+                if (res.status === 0) {
+                    if (res.data.list.length > 3) {
+                        // this.headerProductList = res.data.list.slice(0, 3)
+                        resolve(res.data.list)
+                    }
+
+                }
+
+            })
+        })
+        let result = await p1
+        console.log('result', result)
     },
     methods:{
         getCarouselLeft(){
@@ -278,11 +292,23 @@ export default {
                   this.adsProductList = res.data.adsProduct
               }
           })
-      },
+        },
+        lunboClick(productId) {
+            console.log('lunbo click', productId)
+            this.$router.push({
+                name: 'product',
+                params: {
+                    productId
+                }
+            })
+      }
     }
 }
 </script>
 <style lang="scss" scoped>
+
+
+
 @import '@/assets/scss/base.scss';
     .carousel{
         .container{
@@ -393,17 +419,17 @@ export default {
                 height: 450px;
                 
                 z-index: 1;
-                /deep/ .el-carousel{
+                ::v-deep .el-carousel{
                     width:inherit;
                     height: inherit;
                     // background-color: darkcyan;
                 }
-                /deep/ .el-carousel__container{
+                ::v-deep .el-carousel__container{
                     width:inherit;
                     height: inherit !important;
                     background-color: darkcyan;
                 }
-                /deep/ .el-carousel__button{
+                ::v-deep .el-carousel__button{
                     background-color:#333 !important;
                 }
                 .carousel{
@@ -413,6 +439,7 @@ export default {
                         display: inline-block;
                         height: inherit;
                         width: inherit;
+                        cursor: pointer;
                         img{
                             display: inline-block;
                             height: inherit;
@@ -537,7 +564,7 @@ export default {
             .home-pro-content{
                 height: 600px;
                 // background-color: #FF6700;
-                /deep/ .el-row{
+                ::v-deep .el-row{
                     height: 100%;
                     .left{
                         height: 100%;

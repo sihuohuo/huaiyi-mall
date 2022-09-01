@@ -6,15 +6,16 @@
 </template>
 <script>
 export default {
-    name:'proB',// 子组件b
+    name: 'proB',// 子组件b
+    //inject 是一个字符串数组 或 一个对象
     inject:{
         foo:{
             from:'foo',
-            default:'子组件foo默认值'
+            default:'inject，foo默认值'
         },
         bar:{
             from:'bar',
-            default:'子组件bar默认值'
+            default:'inject，bar默认值'
         }
     },
     data(){
@@ -22,7 +23,8 @@ export default {
 
         }
     },
-    created(){
+    created() {
+        this.foo.a = 'lisa'
         console.log('foo',this.foo)
     },
     methods:{

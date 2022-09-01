@@ -2,7 +2,7 @@ import Product from "@/views/product/index.vue"
 
 const routes = [
     {
-        path:'/product/:id',
+        path:'/product',
         name:'product',
         component:Product
     },

@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <my-a></my-a>
     <modal 
       :showModal.sync="showModal"
       modalType="small" 
@@ -28,7 +27,7 @@
         showModal:false,
       }
     },
-    mounted(){  
+  mounted() {  
       const mock = true
       if(mock){
         let req =  require.context('../public/mock',true,/\.js$/)

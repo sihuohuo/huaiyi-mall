@@ -1,42 +1,29 @@
 <template>
-    <div v-bind="$attrs">
-        
-        
-        <el-input v-if="multiple" v-popover:popover clearable @click.native="isDisabled=false"
-            @clear="clear">
+    <div v-bind="$attrs" v-on="$listeners">
+
+
+        <el-input v-if="multiple" v-popover:popover clearable @click.native="inputClick" @clear="clear">
             <template slot="prefix">
-                <el-tag 
-                    v-for="(item,index) in multipleSelection"
-                    :key="item[searchProps.key]"
-                    size="medium" closable 
-                    @close="handleClose(item,index)"
-                    z-index="-1"
-                    >
+                <el-tag v-for="(item,index) in multipleSelection" :key="item[searchProps.key]" size="medium" closable
+                    @close="handleClose(item,index)" z-index="-1">
                     {{item[searchProps.text]}}
                 </el-tag>
-                
+
             </template>
             <template slot="suffix">
                 <i v-show="showClose" class="el-icon-circle-close" @click="suffixCloseIcon"></i>
             </template>
         </el-input>
-        <el-input v-else v-model="inputText" v-popover:popover clearable @click.native="isDisabled=false"
-            @clear="clear" @keyup.native="radioKeyUp"
-        >
+        <el-input v-else v-model="inputText" v-popover:popover clearable @click.native.stop="inputClick" @clear="clear"
+            @keyup.native="radioKeyUp">
         </el-input>
-            <el-popover
-            ref="popover"
-            placement="bottom"
-            width="300"
-            trigger="click"
-            :disabled="isDisabled"
-            >
+        <el-popover ref="popover" placement="bottom" width="300" trigger="click" :disabled="isDisabled">
             <template>
-                <el-row :gutter="20" 
-                style="display:flex;justify-content:flex-start;flex-wrap: wrap;align-items:center;margin-bottom:5px"
-                >
+                <el-row :gutter="20"
+                    style="display:flex;justify-content:flex-start;flex-wrap: wrap;align-items:center;margin-bottom:5px">
                     <el-col :span="12" v-for="item in searchCondition" :key="item.key" style="margin:2px 0px">
-                        <el-input v-model="item.value" :placeholder="item.label || '请输入'" style="width:100%" clearable></el-input>
+                        <el-input v-model="item.value" :placeholder="item.label || '请输入'" style="width:100%" clearable>
+                        </el-input>
                     </el-col>
                     <el-col :span="12">
                         <el-button-group>
@@ -44,52 +31,36 @@
                             <el-button @click="reset" size="medium">重置</el-button>
                         </el-button-group>
                     </el-col>
-                    
+
                 </el-row>
-                
-                <el-table
-                    v-if="multiple"
-                    ref="multipleTable"
-                    :data="tableData"
-                    highlight-current-row
-                    @current-change="handleCurrentChange"
-                    style="width: 100%"
-                    height="200"
-                    stripe
-                    @selection-change="handleSelectionChange"
-                >
+
+                <el-table v-if="multiple" ref="multipleTable" :data="tableData" highlight-current-row
+                    @current-change="handleCurrentChange" style="width: 100%" height="200" stripe
+                    @selection-change="handleSelectionChange">
                     <el-table-column type="selection" width="55" fixed="left"></el-table-column>
                     <el-table-column type="index" width="60" label="序号" fixed="left"></el-table-column>
-                    <el-table-column v-for="{key,label,source} in searchColumn"  :key="key"
-                     :prop="key" width="100" :label="label" sortable :formatter="getTableColumnSource" :column-key="source">
-                        
-                     </el-table-column >
-                    
+                    <el-table-column v-for="{key,label,source} in searchColumn" :key="key" :prop="key" width="100"
+                        :label="label" sortable :formatter="getTableColumnSource" :column-key="source">
+
+                    </el-table-column>
+
                 </el-table>
-                <el-table
-                    v-else
-                    ref="radioTable"
-                    :data="tableData"
-                    highlight-current-row
-                    @current-change="handleCurrentChange"
-                    style="width: 100%"
-                    height="200"
-                    stripe
-                    @row-dblclick="rowDblClick"
-                >
+                <el-table v-else ref="radioTable" :data="tableData" highlight-current-row
+                    @current-change="handleCurrentChange" style="width: 100%" height="200" stripe
+                    @row-dblclick="rowDblClick">
                     <el-table-column type="index" width="60" label="序号"></el-table-column>
-                    <el-table-column v-for="{key,label,source} in searchColumn"  :key="key"
-                     :prop="key" width="100" :label="label" sortable :formatter="getTableColumnSource" :column-key="source">
-                        
-                     </el-table-column >
-                    
+                    <el-table-column v-for="{key,label,source} in searchColumn" :key="key" :prop="key" width="100"
+                        :label="label" sortable :formatter="getTableColumnSource" :column-key="source">
+
+                    </el-table-column>
+
                 </el-table>
-                
+
                 <!-- <component :is="multiple?'radioTable':'checkboxTable'"></component> -->
             </template>
         </el-popover>
         <!-- <el-button v-popover:popover>focus 激活</el-button> -->
-        
+
     </div>
 </template>
 <script>
@@ -165,6 +136,7 @@ export default {
             default:()=>{return {}},
             require:false
         },
+        tableColumnSource: {}, // 存储表格列数据字典的数据
     },
     model:{
         prop:'searchText',
@@ -196,17 +168,35 @@ export default {
     },
     watch:{
         searchText:{
-            handler(val){
-                this.initMultipleSelection()
-                if(val.length>0){
-                    this.showClose = true
-                }else{
-                    this.showClose = false
+            async handler(val) {
+                if (Array.isArray(val)) {
+                    this.initMultipleSelection()
+                    if (val.length > 0) {
+                        this.showClose = true
+                    } else {
+                        this.showClose = false
+                    }
+                } else {
+                    if (this.tableData.length === 0) {
+                        await this.getTableData()
+                    }
+                    let obj = {}
+                    this.tableData.some((item) => {
+                        if (item[this.searchProps.key] == val) {
+                            this.inputText = item[this.searchProps.text]
+                            return true
+                        }
+                    })
+                    
                 }
+                
             },
             immediate:true,
             deep:true
         }
+    },
+    created() {
+          
     },
     async mounted(){
         await this.getTableData()
@@ -219,7 +209,7 @@ export default {
         //         })   
         //         if(boo){
         //             this.$refs.multipleTable.toggleRowSelection(tableItem,true)
-        //         }else{
+        //         }else{getTableData
         //             this.$refs.multipleTable.toggleRowSelection(tableItem,false)
         //         }
         //     })
@@ -235,7 +225,7 @@ export default {
     methods:{
         // 获取table表格数据
         async getTableData(){
-            console.log('multipleSelection',this.multipleSelection)
+            // console.log('multipleSelection',this.multipleSelection)
             this.tableData = await new Promise( (resolve)=>{
                 setTimeout(resolve(
                     [
@@ -249,13 +239,13 @@ export default {
         rowDblClick(row){
             if(this.multiple){
                 //多选时的处理
-            }else{
+            } else {
+                // 关闭Poppver
+                this.isDisabled = true
                 // 单选时的处理
                 this.radiotSelectedRow = row
                 this.inputText = row[this.searchProps.text]
                 this.$emit('change',row[this.searchProps.key])
-                // 关闭Poppver
-                this.isDisabled = true
             }
         },
         getTableColumnSource(row, column, cellValue, index){
@@ -284,7 +274,7 @@ export default {
                 //     return await p
                 // }
                 // return fn1()
-
+                
                 let data = [
                             {key:'01',text:'男'},
                             {key:'02',text:'女'}
@@ -338,7 +328,11 @@ export default {
             this.$emit('change',[])   
         },
 
-
+        inputClick(e) {
+            this.$emit('click')
+            this.isDisabled = false  
+            console.log("ssss", this.isDisabled)
+        },
         query(){
             console.log('searchCondition',this.searchCondition)
         },
@@ -364,19 +358,22 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-    /deep/ .el-input{
+
+
+    ::v-deep .el-input{
         width: 200px;
     }
     .input-tag{
         width: 200px;
         height: 40px;
-        border: 1px solid blue;
+        border: 1
+        px solid blue;
     }
-    /deep/ .el-input__prefix{
+        ::v-deep .el-input__prefix{
         align-items: center;
         display: flex;
     }
-    /deep/ .el-input__suffix{
+        ::v-deep .el-input__suffix{
         margin-right:3px;
         align-items: center;
         display: flex;

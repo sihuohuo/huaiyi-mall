@@ -3,15 +3,24 @@
         <div class="nav-topbar">
             <div class="container">
                 <div class="topbar-menu">
-                    <a href="javascript:;">YuanYi</a>
-                    <a href="javascript:;">YangHuai</a>
+                    <a href="javascript:;" @click="goToHome">首页</a>
+                    <a href="javascript:;">yuanyi&yanghuai</a>
                     <a href="javascript:;">云服务</a>
                     <a href="javascript:;">天星科技</a>
                     <a href="javascript:;">有品</a>
                 </div>
                 <div class="topbar-user">
-                    <a href="javascript:;" v-if="userName">{{userName}}</a>
-                    <a href="javascript:;" v-else-if="!userName" @click="goToLogin">登录</a>
+                    <a href="javascript:;" class="login-user" v-if="jisuanName" @mouseleave="isShowUserDown = false"
+                        @mousemove="isShowUserDown=true">{{ jisuanName}}
+                        <div class="login-user-down" v-show="isShowUserDown">
+                            <ul>
+                                <li>
+                                    <span @click="userLoginOut">退出</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </a>
+                    <a href="javascript:;" v-else-if="!jisuanName" @click="goToLogin">登录</a>
                     <a href="javascript:;">我的订单</a>
                     <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
                 </div>
@@ -42,35 +51,39 @@
                 </div>
                 <div class="header-search">
                     <div class="search">
-                        <el-autocomplete
-                        class="inline-input"
-                        v-model="searchContent"
-                        :fetch-suggestions="querySearch"
-                        placeholder="请输入内容"
-                        @select="handleSelect"
-                        ></el-autocomplete>
+                        <el-autocomplete class="inline-input" v-model="searchContent" :fetch-suggestions="querySearch"
+                            placeholder="请输入内容" @select="handleSelect"></el-autocomplete>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapMutations} from 'vuex'
 export default {
     name:'nav-header',
     data(){
         return {
+            isShowUserDown:false,
             searchContent:'',
             searchContentList: [],
             headerProductList:[],
         }
     },
     computed:{
-        ...mapState([
-            'userName'
-        ])
+        ...mapState({
+            // userName:'userName'
+            jisuanName(state) {
+                console.log("state",state)
+                if (state.userMsg) {
+                    return state.userMsg.userName
+                } else {
+                    return ''
+                }
+            }
+        })
     },
     filters:{
         priceFilter(val){
@@ -78,11 +91,17 @@ export default {
             return `￥${val}`
         }
     },
-        mounted(){
+    mounted(){
         this.searchContentList = this.loadAll()
         this.getHeaderProdcut()
     },
-    methods:{
+    methods: {
+        ...mapMutations(
+            {
+                loginOut: 'loginOut',
+                goHome:"goHome"
+            }
+        ),
         searchClick(){
             console.log('searchClick')
             this.searchItem = true
@@ -132,14 +151,33 @@ export default {
       },
       goToLogin(){
           this.$router.push('/login')
-      },
-      goToCart(){
-          this.$router.push('/cart')
-      },
+    },
+      goToCart() {
+        // window.history.pushState(null,'',"/cart")
+        //   this.$router.push('/cart')
+        this.$router.push({
+            name: 'cart',
+            params: {
+                name: 'zhangsan',
+                age:'20'
+            }
+        })
+        },
+        goToHome() {
+            // console.log(this)
+            this.goHome(this)
+            // if (this.$route.path !== '/') {
+            //     this.$router.push("/")
+            // }
+        },
+        userLoginOut() {
+            this.loginOut(this)
+        }
     }
 }
 </script>
 <style lang="scss" scoped>
+
 @import '@/assets/scss/base.scss';
 @import '@/assets/scss/mixin.scss';
 @import '@/assets/scss/config.scss';
@@ -177,7 +215,29 @@ export default {
                     a:last-child{
                         margin-right: 0px;
                     }
+                    .login-user{
+                        position: relative;
+                        .login-user-down {
+                            height: 100px;
+                            width: 100px;
+                            background-color: #88b9d0;
+                            position: absolute;
+                            top: 39px;
+                            left: -30px;
+                            z-index: 10;
+                            ul{
+                                li{
+                                    margin-left: 30px;
+                                    font-size: 1.2rem;
+                                    &:hover{
+                                        color: red;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+                
             }
         }
         .nav-header{

@@ -1,9 +1,11 @@
 {
     "status":"0",
     "data":{
-        "id":"4399",
-        "userName":"yuanyi",
-        "phone":"12345678911"
+        "id":"001",
+        "name":"yuanyi",
+        "phone":"13110241024",
+        "account":"13110241024",
+        "pwd":"123456"
     },
     "message":"操作成功"
 }

@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./routers/index";
 import store from "./store/index";
-import global from './global/index'
+import  global from './global/index'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css' // 样式需要单独引用
 import VueLazyload from 'vue-lazyload'
@@ -13,7 +13,12 @@ Vue.use(VueLazyload,{
   loading:"../public/img/icons/loading.gif"
 })
 Vue.config.productionTip = false;
-Vue.prototype.$global = global
+Vue.prototype.$global = global;
+// Vue.config.errorHandler = function (err, vm, info) {
+//   // console.log("------",err)
+//   // console.log(vm)
+//   // console.log(info)
+// }
 
 // 注册全局组件
 let req = require.context('@/components/global',true,/\.vue$/)

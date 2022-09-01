@@ -33,12 +33,12 @@ export default {
     p.then(res=>{
       console.log(res)
     })
-    // this.$store.dispatch('saveUserMsg')
-    this.saveUserMsg()
+    // this.$store.dispatch('login')
+    this.login()
   },
   methods:{
     ...mapActions({
-      'saveUserMsg':'saveUserMsg'
+      'login':'login'
     }),
     testRequest(){
       this.$global.axios.get('/user/login').then((res)=>{

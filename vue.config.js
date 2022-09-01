@@ -1,5 +1,6 @@
 module.exports = {
-    devServer:{
+    devServer: {
+        disableHostCheck:true,
         contentBase: "./dist", // 生成虚拟目录的位置
         open:true, // 自动打开浏览器
         // autoOpenBrowser: true,

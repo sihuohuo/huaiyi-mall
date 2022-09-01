@@ -6,12 +6,12 @@
             <y-checkbox v-model="checkStr" :source="m_checkList" :min="1" :max="3"></y-checkbox>
         </div>
         <br>
-        <div class="g-checkbox">
+        <!-- <div class="g-checkbox">
             <y-tree></y-tree>
-        </div>
+        </div> -->
         <br>
         <div class="g-checkbox">
-            <y-search v-model="searchStr" :multiple="false"></y-search>
+            <y-search v-model="searchStr" :multiple="false" @click.native="click2"></y-search>
             <h1>{{searchStr}}</h1>
         </div>
         <br>
@@ -22,7 +22,7 @@
         </div>
         <br>
         <el-button type="primary" size="small" @click="back">back</el-button>
-        <div>
+        <!-- <div>
             <el-button type="primary" size="small" @click="changeComponent">change</el-button>
             <component :is="isComponent"></component>
         </div>
@@ -31,42 +31,41 @@
         <attrs-a></attrs-a>
         <slot-b></slot-b>
         <model-a></model-a>
-        {{timeData}}
-        
+        {{timeData}} -->
     </div>
 </template>
 
 <script>
 
-import aaa from './component/a.vue'
-import bbb from './component/b.vue'
-import proA from './component/provide&inject/a.vue'
-import parentA from './component/childer&parent/parentA.vue'
-import attrsA from './component/attrs&listenters/a.vue'
-import slotB from './component/slot/b.vue'
-import YElCheckbox from '../../components/global/y-checkbox.vue'
-import modelA from './component/vmodel/a.vue'
-import YTree from '../../components/global/y-tree.vue'
-import YSearch from '../../components/global/y-search.vue'
-import Index from '../index.vue'
+// import aaa from './component/a.vue'
+// import bbb from './component/b.vue'
+// import proA from './component/provide&inject/a.vue'
+// import parentA from './component/childer&parent/parentA.vue'
+// import attrsA from './component/attrs&listenters/a.vue'
+// import slotB from './component/slot/b.vue'
+// import YElCheckbox from '../../components/global/y-checkbox.vue'
+// import modelA from './component/vmodel/a.vue'
+// import YTree from '../../components/global/y-tree.vue'
+// import YSearch from '../../components/global/y-search.vue'
+// import Index from '../index.vue'
 export default {
     name:'Cart',
     components:{
-    aaa,
-    bbb,
-    proA,
-    parentA,
-    attrsA,
-    slotB,
-    YElCheckbox,
-    modelA,
-    YTree,
-        Index
+    // aaa,
+    // bbb,
+    // proA,
+    // parentA,
+    // attrsA,
+    // slotB,
+    // YElCheckbox,
+    // modelA,
+    // YTree,
+    // Index
 },
     data(){
         return{
             isComponent:'bbb',
-            checkStr:'01010',
+            checkStr:'00000',
             m_checkList:[
                 {text:'湖南',value:'0'},
                 {text:'广东',value:'1'},
@@ -74,7 +73,7 @@ export default {
                 {text:'山东',value:'3'},
                 {text:'河北',value:'4'},
             ],
-            searchStr:"",
+            searchStr:"01",
             searchArr:[
                 { "id": "01", "name": "张三", "sex": "01" },
                 { id: "03", name: "雪莉", sex: "02" },
@@ -88,6 +87,15 @@ export default {
         let arr = 1>0 && [1,2,3]
         console.log('arr',arr)
         this.setTimeData()
+
+        let paramsData = this.$route.params
+        console.log('paramsData', paramsData)
+        let obj = {a:"10"}
+        let { b: bbb = 20 } = obj        
+        console.log(bbb)
+        let arr2 = [1, 2, 3, 4]
+        let [a1,,a3] = arr2
+        console.log(a1,a3)
     },
     methods:{
         async setTimeData(){
@@ -105,6 +113,9 @@ export default {
                 this.isComponent = 'aaa'
             }
         },
+        click2() {
+            console.log("click2")
+        }
     }
 }
 </script>
